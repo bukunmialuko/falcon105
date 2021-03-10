@@ -23,35 +23,49 @@ class ListItem extends StatefulWidget {
 
 class _ListItemState extends State<ListItem> with TickerProviderStateMixin {
 // class ListItem extends StatelessWidget {
+
+  bool longPressed = false;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        animateThen();
+        if (longPressed) {
+          setState(() {
+            longPressed = false;
+          });
+        }
+      },
+      onLongPress: () {
+        setState(() {
+          longPressed = true;
+        });
       },
       child: ClipRect(
         child: IntrinsicHeight(
           child: Container(
             child: Stack(
               children: [
-                Container(
-                  child: CustomPaint(
-                    painter: CirclePainter(
-                      _controller,
-                      color: widget.color,
-                    ),
-                    child: SizedBox(
-                      // width: widget.size * 4.125,
-                      // height: widget.size * 4.125,
-                      child: _button(),
-                    ),
-                  ),
-                ),
-                Container(
-                    decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.08),
-                  borderRadius: BorderRadius.circular(8.0),
-                )),
+                // Container(
+                //   child: CustomPaint(
+                //     painter: CirclePainter(
+                //       _controller,
+                //       color: widget.color,
+                //     ),
+                //     child: SizedBox(
+                //       // width: widget.size * 4.125,
+                //       // height: widget.size * 4.125,
+                //       child: _button(),
+                //     ),
+                //   ),
+                // ),
+                longPressed
+                    ? Container(
+                        decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.08),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ))
+                    : Container(),
                 Container(
                   // color: Colors.green,
                   child: ListTile(
@@ -86,7 +100,7 @@ class _ListItemState extends State<ListItem> with TickerProviderStateMixin {
     _controller = AnimationController(
       duration: const Duration(milliseconds: 2000),
       vsync: this,
-    )..repeat();
+    );
   }
 
   @override
