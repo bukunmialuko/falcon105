@@ -15,7 +15,7 @@ class _Page1State extends State<Page1> {
       backgroundColor: Color(0xff15161A),
       body: Container(
           padding: EdgeInsets.all(24),
-          child: ListItem())
+          child: Center(child: ListItem()))
     );
   }
 }

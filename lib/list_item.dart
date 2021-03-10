@@ -24,7 +24,7 @@ class ListItem extends StatefulWidget {
 class _ListItemState extends State<ListItem> with TickerProviderStateMixin {
 // class ListItem extends StatelessWidget {
 
-  bool longPressed = false;
+  bool longPressed = true;
 
   @override
   Widget build(BuildContext context) {
@@ -59,13 +59,23 @@ class _ListItemState extends State<ListItem> with TickerProviderStateMixin {
                 //     ),
                 //   ),
                 // ),
-                longPressed
-                    ? Container(
-                        decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.08),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ))
-                    : Container(),
+                Container(
+                    width: 100,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+
+                      color: Colors.white.withOpacity(0.06),
+                      // borderRadius: BorderRadius.circular(8.0),
+                      gradient: RadialGradient(
+                          center: Alignment(-1.0, 0.0),
+                          colors: [Colors.green, Colors.green]),
+                    )),
+
+                Container(
+                    decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.08),
+                  borderRadius: BorderRadius.circular(8.0),
+                )),
                 Container(
                   // color: Colors.green,
                   child: ListTile(
